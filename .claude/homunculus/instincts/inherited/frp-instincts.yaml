@@ -1,0 +1,674 @@
+# Instincts generated from https://github.com/WangNingkai/frp
+# Generated: 2026-05-06T02:44:49.052Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: frp-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/WangNingkai/frp
+---
+
+# Frp Commit Length
+
+## Action
+
+Keep commit messages concise (~41 characters)
+
+## Evidence
+
+- Average commit message length: 41 chars
+- Based on 100 commits
+
+---
+id: frp-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/WangNingkai/frp
+---
+
+# Frp Naming Files
+
+## Action
+
+Use snake_case naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: snake_case
+
+---
+id: frp-import-relative
+trigger: "when importing modules"
+confidence: 0.75
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/WangNingkai/frp
+---
+
+# Frp Import Relative
+
+## Action
+
+Use relative imports for project files
+
+## Evidence
+
+- Import analysis shows relative import pattern
+- Example: import { x } from '../lib/x'
+
+---
+id: frp-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/WangNingkai/frp
+---
+
+# Frp Export Style
+
+## Action
+
+Prefer named exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: named
+
+---
+id: frp-arch-type-based
+trigger: "when adding new code"
+confidence: 0.8
+domain: architecture
+source: repo-analysis
+source_repo: https://github.com/WangNingkai/frp
+---
+
+# Frp Arch Type Based
+
+## Action
+
+Place code in the appropriate type folder (components/, services/, utils/, etc.)
+
+## Evidence
+
+- Type-based module organization detected
+- Folders: 
+
+---
+id: frp-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/WangNingkai/frp
+---
+
+# Frp Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: frp-test-naming
+trigger: "when creating a test file"
+confidence: 0.85
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/WangNingkai/frp
+---
+
+# Frp Test Naming
+
+## Action
+
+Name test files using the pattern: *_test.go
+
+## Evidence
+
+- File pattern: *_test.go
+- Consistent across test files
+
+---
+id: frp-test-types
+trigger: "when planning tests for a feature"
+confidence: 0.7
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/WangNingkai/frp
+---
+
+# Frp Test Types
+
+## Action
+
+Write unit, e2e tests to match project standards
+
+## Evidence
+
+- Test types detected: unit, e2e
+- Coverage config: no
+
+---
+id: frp-workflow-test-driven-development
+trigger: "when adding new functionality"
+confidence: 0.8
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/WangNingkai/frp
+---
+
+# Frp Workflow Test Driven Development
+
+## Action
+
+Follow the test-driven-development workflow:
+1. Write failing test
+2. Implement code to pass test
+3. Refactor if needed
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~6x per month
+- Files: **/*.test.*, **/*.spec.*, src/**/*
+
+---
+id: frp-workflow-release-version-bump
+trigger: "when doing release version bump"
+confidence: 0.55
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/WangNingkai/frp
+---
+
+# Frp Workflow Release Version Bump
+
+## Action
+
+Follow the release-version-bump workflow:
+1. Update version in version.go (or pkg/util/version/version.go)
+2. Update README.md and/or README_zh.md
+3. Update Release.md
+4. Update or touch Makefile, go.mod, go.sum as needed
+5. Update configuration files (conf/frpc_full.ini, conf/frps_full.ini, etc.)
+6. Update or touch test files and assets as needed
+7. Update or touch web UI assets (assets/frpc/static/*, assets/frps/static/*, web/frpc/*, web/frps/*)
+8. Update or touch server/client/service files
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~1x per month
+- Files: pkg/util/version/version.go, README.md, README_zh.md
+
+---
+id: frp-workflow-config-schema-update
+trigger: "when doing config schema update"
+confidence: 0.55
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/WangNingkai/frp
+---
+
+# Frp Workflow Config Schema Update
+
+## Action
+
+Follow the config-schema-update workflow:
+1. Edit pkg/config/client.go, pkg/config/server.go, pkg/config/proxy.go, or related config files
+2. Update corresponding *_test.go files
+3. Update conf/frpc_full.ini, conf/frps_full.ini, or other config examples
+4. Update documentation if needed
+5. Update code that consumes config (client/service.go, server/service.go, etc.)
+6. Update or touch test/e2e and tests/ci files as needed
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~1x per month
+- Files: pkg/config/client.go, pkg/config/server.go, pkg/config/proxy.go
+
+---
+id: frp-workflow-proxy-feature-development
+trigger: "when doing proxy feature development"
+confidence: 0.55
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/WangNingkai/frp
+---
+
+# Frp Workflow Proxy Feature Development
+
+## Action
+
+Follow the proxy-feature-development workflow:
+1. Edit or add files in server/proxy/ (e.g., http.go, udp.go, tcpmux.go, stcp.go, xtcp.go, sudp.go)
+2. Edit or add files in client/proxy/ (e.g., proxy.go, general_tcp.go, udp.go, sudp.go, xtcp.go)
+3. Update pkg/config/proxy.go and/or pkg/config/visitor.go
+4. Update or add command files (cmd/frpc/sub/*.go)
+5. Update tests in test/e2e/basic/*, test/e2e/features/*, test/e2e/plugin/*
+6. Update or touch documentation if needed
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~1x per month
+- Files: server/proxy/*.go, client/proxy/*.go, pkg/config/proxy.go
+
+---
+id: frp-workflow-test-suite-update
+trigger: "when doing test suite update"
+confidence: 0.55
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/WangNingkai/frp
+---
+
+# Frp Workflow Test Suite Update
+
+## Action
+
+Follow the test-suite-update workflow:
+1. Edit or add files in test/e2e/* (basic, features, plugin, etc.)
+2. Edit or add files in tests/ci/*
+3. Edit or add files in tests/mock/* or test/e2e/mock/*
+4. Update or touch related config or code files as needed
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~1x per month
+- Files: test/e2e/*, tests/ci/*, tests/mock/*
+
+---
+id: frp-workflow-web-ui-assets-update
+trigger: "when doing web ui assets update"
+confidence: 0.55
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/WangNingkai/frp
+---
+
+# Frp Workflow Web Ui Assets Update
+
+## Action
+
+Follow the web-ui-assets-update workflow:
+1. Edit or add files in web/frpc/* or web/frps/*
+2. Rebuild assets and update assets/frpc/static/* or assets/frps/static/*
+3. Update or touch README.md or documentation as needed
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~1x per month
+- Files: web/frpc/*, web/frps/*, assets/frpc/static/*
+
+---
+id: frp-workflow-ci-cd-workflow-update
+trigger: "when doing ci cd workflow update"
+confidence: 0.55
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/WangNingkai/frp
+---
+
+# Frp Workflow Ci Cd Workflow Update
+
+## Action
+
+Follow the ci-cd-workflow-update workflow:
+1. Edit or add files in .github/workflows/*, .circleci/config.yml, .travis.yml, .golangci.yml
+2. Update Makefile or package.sh if needed
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~1x per month
+- Files: .github/workflows/*, .circleci/config.yml, .travis.yml
+
+---
+id: frp-instinct-file-naming
+trigger: "When creating or renaming a file"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: WangNingkai/frp
+---
+
+# Frp Instinct File Naming
+
+## Action
+
+Use snake_case for file names
+
+## Evidence
+
+- Pattern in files: server/proxy/http.go, client/proxy/proxy.go
+
+---
+id: frp-instinct-function-naming
+trigger: "When defining a function"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: WangNingkai/frp
+---
+
+# Frp Instinct Function Naming
+
+## Action
+
+Use camelCase for function names
+
+## Evidence
+
+- Pattern in Go codebase, e.g., func newProxy() in client/proxy/proxy.go
+
+---
+id: frp-instinct-class-naming
+trigger: "When defining a struct or class"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: WangNingkai/frp
+---
+
+# Frp Instinct Class Naming
+
+## Action
+
+Use PascalCase for struct and class names
+
+## Evidence
+
+- Pattern in Go codebase, e.g., type Proxy struct in server/proxy/http.go
+
+---
+id: frp-instinct-constant-naming
+trigger: "When defining a constant"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: WangNingkai/frp
+---
+
+# Frp Instinct Constant Naming
+
+## Action
+
+Use SCREAMING_SNAKE_CASE for constants
+
+## Evidence
+
+- Pattern in Go codebase, e.g., const DEFAULT_PORT = 8080
+
+---
+id: frp-instinct-import-style
+trigger: "When importing modules/packages"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: WangNingkai/frp
+---
+
+# Frp Instinct Import Style
+
+## Action
+
+Use relative import paths
+
+## Evidence
+
+- Pattern in Go import statements across codebase
+
+---
+id: frp-instinct-export-style
+trigger: "When exporting functions or types"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: WangNingkai/frp
+---
+
+# Frp Instinct Export Style
+
+## Action
+
+Use named exports
+
+## Evidence
+
+- Pattern in Go codebase, exported types/functions with capitalized names
+
+---
+id: frp-instinct-test-file-pattern
+trigger: "When creating a test file"
+confidence: 0.9
+domain: testing
+source: repo-analysis
+source_repo: WangNingkai/frp
+---
+
+# Frp Instinct Test File Pattern
+
+## Action
+
+Name the file with *_test.go suffix
+
+## Evidence
+
+- Pattern in files: pkg/config/client_test.go, pkg/config/server_test.go
+
+---
+id: frp-instinct-test-type
+trigger: "When writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: WangNingkai/frp
+---
+
+# Frp Instinct Test Type
+
+## Action
+
+Write both unit and end-to-end (e2e) tests as appropriate
+
+## Evidence
+
+- Presence of test/e2e/* and *_test.go files
+
+---
+id: frp-instinct-test-location
+trigger: "When organizing tests"
+confidence: 0.85
+domain: testing
+source: repo-analysis
+source_repo: WangNingkai/frp
+---
+
+# Frp Instinct Test Location
+
+## Action
+
+Place tests in separate test directories or *_test.go files
+
+## Evidence
+
+- test/e2e/*, tests/ci/*, *_test.go files
+
+---
+id: frp-instinct-git-commit-prefix
+trigger: "When writing a commit message"
+confidence: 0.9
+domain: git
+source: repo-analysis
+source_repo: WangNingkai/frp
+---
+
+# Frp Instinct Git Commit Prefix
+
+## Action
+
+Use a prefix indicating the type of change (e.g., fix:, feat:, build:, test:)
+
+## Evidence
+
+- Seen in commits: 'fix: type error in server_plugin doc (#4799)', 'feat: support YAML merge in strict configuration mode (#4809)', 'build: add x64 openbsd (#4780)'
+
+---
+id: frp-instinct-git-merge-format
+trigger: "When merging pull requests"
+confidence: 0.9
+domain: git
+source: repo-analysis
+source_repo: WangNingkai/frp
+---
+
+# Frp Instinct Git Merge Format
+
+## Action
+
+Use 'Merge pull request #<number> from <branch>' format in commit message
+
+## Evidence
+
+- Seen in commits: 'Merge pull request #1349 from fatedier/dev'
+
+---
+id: frp-instinct-release-version-bump
+trigger: "When preparing a new release or patch version"
+confidence: 0.98
+domain: workflow
+source: repo-analysis
+source_repo: WangNingkai/frp
+---
+
+# Frp Instinct Release Version Bump
+
+## Action
+
+Update version.go, documentation, changelog, config, assets, and service files as per release-version-bump workflow
+
+## Evidence
+
+- Workflow: release-version-bump
+- Files: pkg/util/version/version.go, README.md, Release.md, conf/frpc_full.ini, assets/frpc/static/*, client/service.go
+
+---
+id: frp-instinct-config-schema-update
+trigger: "When adding or changing configuration options for client/server/proxy"
+confidence: 0.92
+domain: workflow
+source: repo-analysis
+source_repo: WangNingkai/frp
+---
+
+# Frp Instinct Config Schema Update
+
+## Action
+
+Edit config files, update tests, config examples, documentation, and consuming code as per config-schema-update workflow
+
+## Evidence
+
+- Workflow: config-schema-update
+- Files: pkg/config/client.go, pkg/config/server.go, pkg/config/proxy.go, conf/frpc_full.ini, test/e2e/*
+
+---
+id: frp-instinct-proxy-feature-development
+trigger: "When implementing a new proxy type or updating proxy logic"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: WangNingkai/frp
+---
+
+# Frp Instinct Proxy Feature Development
+
+## Action
+
+Edit proxy files, update config, commands, tests, and documentation as per proxy-feature-development workflow
+
+## Evidence
+
+- Workflow: proxy-feature-development
+- Files: server/proxy/*.go, client/proxy/*.go, pkg/config/proxy.go, test/e2e/basic/*
+
+---
+id: frp-instinct-test-suite-update
+trigger: "When adding new features, fixing bugs, or improving test coverage"
+confidence: 0.88
+domain: workflow
+source: repo-analysis
+source_repo: WangNingkai/frp
+---
+
+# Frp Instinct Test Suite Update
+
+## Action
+
+Update or add files in test/e2e/*, tests/ci/*, tests/mock/*, and related config/code as per test-suite-update workflow
+
+## Evidence
+
+- Workflow: test-suite-update
+- Files: test/e2e/*, tests/ci/*, tests/mock/*
+
+---
+id: frp-instinct-web-ui-assets-update
+trigger: "When making changes to the web dashboard or updating frontend dependencies"
+confidence: 0.85
+domain: workflow
+source: repo-analysis
+source_repo: WangNingkai/frp
+---
+
+# Frp Instinct Web Ui Assets Update
+
+## Action
+
+Edit web UI files, rebuild assets, and update documentation as per web-ui-assets-update workflow
+
+## Evidence
+
+- Workflow: web-ui-assets-update
+- Files: web/frpc/*, assets/frpc/static/*
+
+---
+id: frp-instinct-ci-cd-workflow-update
+trigger: "When changing build, lint, or release automation"
+confidence: 0.87
+domain: workflow
+source: repo-analysis
+source_repo: WangNingkai/frp
+---
+
+# Frp Instinct Ci Cd Workflow Update
+
+## Action
+
+Edit CI/CD workflow files and update Makefile or package.sh as per ci-cd-workflow-update workflow
+
+## Evidence
+
+- Workflow: ci-cd-workflow-update
+- Files: .github/workflows/*, Makefile
+
